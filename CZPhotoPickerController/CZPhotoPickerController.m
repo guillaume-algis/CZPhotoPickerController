@@ -72,6 +72,7 @@ typedef enum {
 
   if (self) {
     self.allowsEditing = NO;
+    self.allowsLastPhoto = YES;
     self.showFromViewController = aViewController;
     self.completionBlock = completionBlock;
     [self observeApplicationDidEnterBackgroundNotification];
@@ -120,6 +121,11 @@ typedef enum {
 
 - (void)getLastPhotoTakenWithCompletionBlock:(void (^)(UIImage *))completionBlock
 {
+  if (!self.allowsLastPhoto) {
+    completionBlock(nil);
+      return;
+  }
+
   [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
 
     if (*stop == YES) {

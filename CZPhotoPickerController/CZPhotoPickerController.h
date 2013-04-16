@@ -25,6 +25,12 @@ typedef void (^CZPhotoPickerCompletionBlock)(UIImagePickerController *imagePicke
 @property(nonatomic,assign) BOOL allowsEditing;
 
 /**
+ Defaults to YES. Allow the user to pick the last taken photo
+ */
+@property(nonatomic,assign) BOOL allowsLastPhoto;
+
+
+/**
  Allow overriding of the UIPopoverController class used to host the
  UIImagePickerController. Defaults to UIPopoverController.
  */
